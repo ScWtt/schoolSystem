@@ -1,0 +1,148 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 15,
+  "data": [
+    {
+      "id": 1,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 2,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 3,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 4,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 5,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 6,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 7,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 8,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 9,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 10,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 11,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 12,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 13,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    },{
+      "id": 14,
+      "username": "user12",
+      "sex":"男",
+      "city":"南京",
+      "sign":"wtt",
+      "experience":"100",
+      "classify":"计算机",
+      "wealth":"3000",
+      "score":"400"
+    }
+  ]
+}

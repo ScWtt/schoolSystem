@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>home</title>
+		<link rel="stylesheet" type="text/css" href="../css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	</head>
+
+	<body>
+		<div class="layui-container login-form" style="width: 380px;height: 400px;">
+			<div class="layui-tab">
+				<header class="layui-elip" style="text-align: center;font-size: 24px;margin-bottom: 20px;">登  录</header>
+				<ul class="layui-tab-title" style="text-align: center;margin-bottom: 10px;">
+					<li class="layui-this">账号登录</li>
+					<li>机构登录</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<form class="layui-form layui-form-pane1" action="" lay-filter="first">
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="text-align: center;">账号</label>
+								<div class="layui-input-block">
+									<input type="text" name="username" id="" value="" lay-verify="required" required placeholder="请输入姓名" autocomplete="off" class="layui-input" />
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="text-align: center;">密码</label>
+								<div class="layui-input-block">
+									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="layui-tab-item">
+						<form action="" method="post" class="layui-form layui-form-pane1" lay-filter="first">
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="text-align: center;">机构账号</label>
+								<div class="layui-input-block">
+									<input type="text" name="userCount" id="" value="" lay-verify="required" required placeholder="请输入机构账号" autocomplete="off" class="layui-input" />
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="text-align: center;">登录名</label>
+								<div class="layui-input-block">
+									<input type="text" name="username" id="" value="" lay-verify="required" required placeholder="请输入登录名" autocomplete="off" class="layui-input" />
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label" style="text-align: center;">密码</label>
+								<div class="layui-input-block">
+									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</div>
+
+		<!--js部分-->
+		<script src="../layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+			layui.use('element', function() {
+				var element = layui.element;
+
+				//…
+			});
+		</script>
+	</body>
+
+</html>

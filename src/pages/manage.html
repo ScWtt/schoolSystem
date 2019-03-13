@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/manage.css"/>
+	</head>
+	<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">管理员页面</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          贤心
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      	<li class="layui-nav-item layui-nav-itemed">
+      		<a href="#">
+      			<i class="layui-icon layui-icon-home" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+      			工作台
+      		</a>
+      	</li>
+        <li class="layui-nav-item">
+          <a class="" href="javascript:;">
+          	<i class="layui-icon layui-icon-user" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+          	招生中心</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" style="margin-left: 34px;">招生动态</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;">招生政策</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;">招生计划</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+          	<i class="layui-icon layui-icon-read" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+          	教务中心</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" style="margin-left: 34px;">学员</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;">班级</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;">课程</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+        	<a href="javascript:;">
+        		<i class="layui-icon layui-icon-form" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+        		内部管理</a>
+        	<dl class="layui-nav-child">
+	            <dd><a href="javascript:;" style="margin-left: 34px;">组织架构</a></dd>
+	            <dd><a href="javascript:;" style="margin-left: 34px;">员工</a></dd>
+	            <dd><a href="javascript:;" style="margin-left: 34px;">工资</a></dd>
+	            <dd><a href="javascript:;" style="margin-left: 34px;">财务</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">
+        	<i class="layui-icon layui-icon-list" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+        	报表中心</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="background-color: #dee4ee;">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;width: 100%;height: 650px;">
+    	<div class="desktop" id="manage_content" style="display: none;">
+			<div class="desktop-title">
+				<span class="desktop-title-icon"></span>
+				<span>初始化设置</span>
+				<ul class="desktop-navigation">
+					<li class="desktop-navigation-employeer">
+						<a href="#">组织架构</a>
+					</li>
+					<li class="nav-title">
+						<a href="#">员工</a>
+					</li>
+					<li class="nav-title">
+						<a href="#">课程</a>
+					</li>
+					<li class="nav-title">
+						<a href="#">教室设置</a>
+					</li>
+					<li class="nav-title">
+						<a href="#">班级</a>
+					</li>
+					<li class="nav-title">
+						<a href="#">学员导入</a>
+					</li>
+				</ul>
+			</div>
+			<div class="desktop-function">
+				<span class="desktop-title-icon"></span>
+				<span>常用功能</span>
+				<ul class="desktop-function-content">
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>咨询记录</div>
+						</a>
+					</li>
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>报名续费</div>
+						</a>
+					</li>
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>排课</div>
+						</a>
+					</li>
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>计上课</div>
+						</a>
+					</li>
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>员工</div>
+						</a>
+					</li>
+					<li class="function">
+						<a href="#">
+							<i class="layui-icon layui-icon-survey" style="font-size: 30px;"></i>
+							<div>考勤打卡</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="desktop-information">
+				<span class="desktop-title-icon"></span>
+				<span>今日资讯</span>
+				<div class="layui-row">
+					<div class="layui-col-md7">
+						<div class="layui-tab">
+							<ul class="layui-tab-title">
+								<li class="layui-this">学校新闻</li>
+								<li>通知公告</li>
+								<li>教学信息</li>
+								<li>学术信息</li>
+							</ul>
+							<div class="layui-tab-content">
+								<div class="layui-tab-item layui-show">
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#" class="school-new">澳大利亚斯威本科技大学杨耘教授学术讲座1</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#" class="school-new">澳大利亚斯威本科技大学杨耘教授学术讲座2</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#" class="school-new">澳大利亚斯威本科技大学杨耘教授学术讲座3</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#">澳大利亚斯威本科技大学杨耘教授学术讲座4</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#">澳大利亚斯威本科技大学杨耘教授学术讲座5</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+									<div class="layui-row" style="margin-top: 10px;">
+										<div class="layui-col-md9">
+											<a href="#">澳大利亚斯威本科技大学杨耘教授学术讲座6</a>
+										</div>
+										<div class="layui-col-md3" style="text-align: right;">
+											2019-03-12
+										</div>
+									</div>
+								</div>
+								<div class="layui-tab-item">内容2</div>
+								<div class="layui-tab-item">内容3</div>
+								<div class="layui-tab-item">内容4</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md5" style="text-align: center;">
+						<div class="layui-carousel" id="wheel" style="margin: 10px 0 0 60px;">
+							<div carousel-item="" class="wheel-content">
+								<div><a href="#"><img src="../images/static/llbb01_r2_c2.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+								<div><a href="#"><img src="../images/static/lblb02_r2_c2.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+								<div><a href="#"><img src="../images/static/lblb03_r2_c2.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+								<div><a href="#"><img src="../images/static/lblb04_r2_c1.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+								<div><a href="#"><img src="../images/static/lblb05_r2_c1.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+								<div><a href="#"><img src="../images/static/lblb06_r2_c1.jpg" height="210px" style="margin-bottom: 5px;">图片1图片1图片1图片1图片1图片1图片1图片1图片1图片1</div></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="inform" id="school_news" style="text-align: center;display: none;">
+			<p>11111111111111111111111111111111111111111111</p>
+		</div>
+    	<!--<iframe src="nav-content.html" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>-->
+    </div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="../layui.js"></script>
+<script>
+//JavaScript代码区域
+layui.use(['element','carousel','jquery'], function() {
+	var element = layui.element,
+	carousel = layui.carousel,
+	form = layui.form,
+	$ = layui.$;
+	
+	//图片轮播
+	carousel.render({
+		elem:'#wheel',
+		width:'320px',
+		height:'260px',
+		interval:3000,
+		indicator:'none'
+	});
+	
+	//今日资讯的里的内容点击事件
+	$('.school-new').click(function(){
+		var news = $(this).text();
+		$('#manage_content').hide();
+		$('#school_news').show().append(news)
+	});
+});
+</script>
+</body>
+</html>
