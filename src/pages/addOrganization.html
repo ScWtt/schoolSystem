@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/layui.css" />
+	</head>
+
+	<body>
+			<div id="add">
+			<div class="layui-row">
+				<div class="addTitle" style="width: 100%;height: 40px;color: #fff;font-size: 15px;line-height: 40px;background-color: #2996e8;text-align: center;">
+					新建
+				</div>
+			</div>
+			<div class="layui-row" style="margin: 20px 40px;">
+				<form class="layui-form layui-form-pane1" action="" >
+					<div class="layui-form-item">
+						<label class="layui-form-label" style="text-align: center;">部门名称</label>
+						<div class="layui-input-block">
+							<input id="name" type="text" name="username" id="" value="" lay-verify="required" required placeholder="请输入姓名" autocomplete="off" class="layui-input" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label" style="text-align: center;">电话</label>
+						<div class="layui-input-block">
+							<input id="phone" type="text" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
+						</div>
+					</div>
+					<div class="layui-form-item" style="margin-top: 30px;">
+					    <div class="layui-input-block">
+					      <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: #2996e8;margin-right: 20px;">保存</button>
+					      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					      <!--<button type="button" class="layui-btn layui-btn-primary" id="wtt">取消</button>-->
+					    </div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<script src="../layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(['form','jquery'],function(){
+				var form = layui.form,
+				$ = layui.$;
+				form.on('submit(formDemo)',function(data){
+					console.log(JSON.stringify(data.field)); 
+//					return false;
+				});
+//				$('#wtt').click(function(){
+//					$('#add').hide();
+//				})
+			});
+		</script>
+	</body>
+
+</html>
