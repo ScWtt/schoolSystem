@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>layui在线调试在点击示例的时候直接显示的示例</title>
+		<link rel="stylesheet" href="../css/layui.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../css/addStaff.css" />
+		<style>
+			body {
+				margin: 10px;
+			}
+			
+			.demo-carousel {
+				height: 200px;
+				line-height: 200px;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="organization-title">
+			<i class="layui-icon layui-icon-user" style="margin-right: 10px;"></i>员工
+		</div>
+
+		<div id="staff_tab">
+			<table class="layui-hide" id="demo" lay-filter="test"></table>
+		</div>
+
+		<script type="text/html" id="toolbarDemo">
+			<div class="layui-btn-container">
+				<button class="layui-btn layui-btn-sm" lay-event="add">
+		    	<i class="layui-icon layui-icon-add-1" style="margin-right: 5px;"></i>新建员工
+		    </button>
+				<button class="layui-btn layui-btn-sm" lay-event="delete">
+		    	<i class="layui-icon layui-icon-delete" style="margin-right: 5px;"></i>删除
+		    </button>
+			</div>
+		</script>
+
+		<script type="text/html" id="barDemo">
+			<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+
+		<blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
+
+		<!--新建员工开始-->
+		<div class="addStaff">
+			<form class="layui-form" style="width: 500px;">
+				<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+				<!--头像开始-->
+				<div class="layui-form-item">
+					<label class="layui-form-label">上传头像</label>
+					<div class="layui-input-inline">
+						<div class="layui-upload">
+							<input type="hidden" name="logo" value="" id="logo">
+							<div class="layui-upload-list userImg">
+								<img class="layui-upload-img" id="demo1" width="80px" height="80px">
+								<p id="demoText"></p>
+							</div>
+						</div>
+					</div>
+					<!--头像结束-->
+					<div class="layui-form-item">
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-block">
+							<input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">手机号</label>
+						<div class="layui-input-block">
+							<input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">性别</label>
+						<div class="layui-input-block">
+							<input type="radio" name="sex" value="0" title="男">
+							<input type="radio" name="sex" value="1" title="女" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">人事状态</label>
+						<div class="layui-input-block">
+							<select name="interest" lay-filter="aihao">
+								<option value="0">在职</option>
+								<option value="1">离职</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">所属部门</label>
+						<div class="layui-input-block">
+							<select name="interest" lay-filter="aihao">
+								<option value="0">在职</option>
+								<option value="1">离职</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						</div>
+					</div>
+					<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+			</form>
+			</div>
+			<!--新建员工结束-->
+			<script src="../layui.js"></script>
+			<script>
+				layui.config({
+					version: '1551352891272' //为了更新 js 缓存，可忽略
+				});
+
+				layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form', 'jquery'], function() {
+					var laydate = layui.laydate //日期
+						,
+						laypage = layui.laypage //分页
+						,
+						layer = layui.layer //弹层
+						,
+						table = layui.table //表格
+						,
+						carousel = layui.carousel //轮播
+						,
+						upload = layui.upload //上传
+						,
+						element = layui.element //元素操作
+						,
+						slider = layui.slider //滑块
+						,
+						form = layui.form //form表单
+						,
+						$ = layui.$ //jquery
+						,
+						demoText = $('#demoText');
+					//向世界问个好
+
+					//监听Tab切换
+					element.on('tab(demo)', function(data) {
+						layer.tips('切换了 ' + data.index + '：' + this.innerHTML, this, {
+							tips: 1
+						});
+					});
+					
+					//上传头像开始
+					var myVarate = 'https://www.baidu.com/img/bd_logo.png';
+					$('#demo1').attr('src', myVarate); //页面初始化的时候渲染图片
+					//普通图片上传
+					var uploadInst = upload.render({
+						elem: '#demo1',
+						url: 'http://bolg.lengff.xyz/test', //这里填写你的上传地址
+						accept: 'images',
+						method: 'post',
+						acceptMime: 'image/*',
+						before: function(obj) {
+							/*如果您不想用上面的URL 进行上传,也可以在这里,添加你的上传方式*/
+							obj.preview(function(index, file, result) {
+								$('#demo1').attr('src', result); //图片链接（base64）
+							});
+						},
+						done: function(res) {
+							if(res.code == 200) { //长传成功(具体返回code 看后台是怎么处理的)
+								return layer.msg('上传失败');
+								demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+							} else {
+								layer.msg('图片上传成功!');
+							}
+						},
+						error: function() {
+							demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+						}
+					});
+					//上传失败监听重试按钮的操作
+					demoText.find('.demo-reload').on('click', function() {
+						uploadInst.upload();
+					});
+					//上传头像结束
+					
+					//执行一个 table 实例
+					table.render({
+						elem: '#demo',
+						height: 560,
+						url: '../organization.json' //数据接口
+							,
+						title: '用户表',
+						page: true //开启分页
+							,
+						toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+							//  ,totalRow: true //开启合计行
+							,
+						cols: [ //部门名称    //电话
+							[ //表头
+								{
+									type: 'checkbox',
+									fixed: 'left'
+								}, {
+									field: 'username',
+									title: '姓名',
+									width: 100,
+								}, {
+									field: 'phone',
+									title: '手机号',
+									width: 186,
+									//								sort: true,
+									//								totalRow: true
+								}, {
+									field: 'department',
+									title: '所属部门',
+									width: 100,
+								}, {
+									field: 'userbirthday',
+									title: '生日',
+									width: 100,
+								}, {
+									field: 'userstate',
+									title: '人事状态',
+									width: 100,
+								}, {
+									field: 'contracttime',
+									title: '合同到期',
+									width: 100,
+								}, {
+									field: 'orgaccount',
+									title: '机构账号',
+									width: 200,
+								}, {
+									fixed: 'right',
+									title: '操作',
+									width: 180,
+									align: 'center',
+									toolbar: '#barDemo'
+								}
+							]
+						]
+					});
+
+					//监听头工具栏事件
+					table.on('toolbar(test)', function(obj) {
+						var checkStatus = table.checkStatus(obj.config.id),
+							data = checkStatus.data; //获取选中的数据
+						switch(obj.event) {
+							case 'add':
+								$('#staff_tab').hide();
+								break;
+							case 'delete':
+								if(data.length === 0) {
+									layer.msg('请选择一行');
+								} else { //这里的删除需要在后端写代码 https://blog.csdn.net/qq_38225558/article/details/85229699
+									layer.confirm('真的删除行么', function() { //这里需要在后端进行数据操作
+										//									obj.del(); //删除对应行（tr）的DOM结构
+										//									layer.close(index);
+										//向服务端发送删除指令
+										$(".layui-form-checked").not('.header').parents('tr').remove()
+									});
+								}
+								break;
+						};
+					});
+					//保存按钮
+					//				var result = {};
+					//				
+					//				form.on('submit(formDemo)',function(data){
+					//					result = data.field;
+					//					console.log('result',result,result.username,result.phone);
+					//				});
+					//监听行工具事件
+					table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+						var data = obj.data //获得当前行数据
+							,
+							layEvent = obj.event; //获得 lay-event 对应的值
+						if(layEvent === 'detail') {
+							layer.msg('查看操作');
+						} else if(layEvent === 'del') {
+							console.log('this.obj2', obj)
+							layer.confirm('真的删除行么', function(index) {
+								obj.del(); //删除对应行（tr）的DOM结构
+								layer.close(index);
+								//向服务端发送删除指令
+							});
+						} else if(layEvent === 'edit') {
+							layer.open({
+								area: ['400px', '260px'],
+								title: false,
+								type: 1,
+								content: $('#add'),
+								success: function() {
+									$('#name').val(data.username);
+									$('#phone').val(data.phone);
+								}
+							});
+						}
+					});
+
+					//分页
+					laypage.render({
+						elem: 'pageDemo' //分页容器的id
+							,
+						count: 100 //总页数
+							,
+						skin: '#1E9FFF' //自定义选中色值
+							//,skip: true //开启跳页
+							,
+						jump: function(obj, first) {
+							if(!first) {
+								layer.msg('第' + obj.curr + '页', {
+									offset: 'b'
+								});
+							}
+						}
+					});
+
+					//上传
+					upload.render({
+						elem: '#uploadDemo',
+						url: '' //上传接口
+							,
+						done: function(res) {
+							console.log(res)
+						}
+					});
+
+				});
+			</script>
+	</body>
+
+</html>

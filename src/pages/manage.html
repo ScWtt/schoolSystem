@@ -45,7 +45,7 @@
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
       	<li class="layui-nav-item layui-nav-itemed">
-      		<a href="#">
+      		<a href="#" id="work_bench">
       			<i class="layui-icon layui-icon-home" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
       			工作台
       		</a>
@@ -75,8 +75,8 @@
         		<i class="layui-icon layui-icon-form" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
         		内部管理</a>
         	<dl class="layui-nav-child">
-	            <dd><a href="javascript:;" style="margin-left: 34px;">组织架构</a></dd>
-	            <dd><a href="javascript:;" style="margin-left: 34px;">员工</a></dd>
+	            <dd><a href="javascript:;" style="margin-left: 34px;" id="organization_btn">组织架构</a></dd>
+	            <dd><a href="javascript:;" style="margin-left: 34px;" id="staff_btn">员工</a></dd>
 	            <dd><a href="javascript:;" style="margin-left: 34px;">工资</a></dd>
 	            <dd><a href="javascript:;" style="margin-left: 34px;">财务</a></dd>
           </dl>
@@ -91,16 +91,16 @@
   <div class="layui-body" style="background-color: #dee4ee;">
     <!-- 内容主体区域 -->
     <div style="padding: 15px;width: 100%;height: 650px;">
-    	<div class="desktop" id="manage_content" style="display: none;">
+    	<div class="desktop" id="manage_content">
 			<div class="desktop-title">
 				<span class="desktop-title-icon"></span>
 				<span>初始化设置</span>
 				<ul class="desktop-navigation">
 					<li class="desktop-navigation-employeer">
-						<a href="#">组织架构</a>
+						<a href="#" id="desktop_organization">组织架构</a>
 					</li>
 					<li class="nav-title">
-						<a href="#">员工</a>
+						<a href="#" id="desktop_staff">员工</a>
 					</li>
 					<li class="nav-title">
 						<a href="#">课程</a>
@@ -245,7 +245,7 @@
 		<div class="inform" id="school_news" style="text-align: center;display: none;">
 			<p>11111111111111111111111111111111111111111111</p>
 		</div>
-    	<iframe src="organization.html" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+    	<iframe src="organization.html" id="manage_iframe" style="display: none;" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
     </div>
   </div>
   
@@ -277,6 +277,25 @@ layui.use(['element','carousel','jquery'], function() {
 		var news = $(this).text();
 		$('#manage_content').hide();
 		$('#school_news').show().append(news)
+	});
+	
+
+	//工作台的隐藏其他显示的事件
+	function workHide(showEvent,iframeSrc){
+		$('#manage_content').hide();
+		$(showEvent).attr('src',iframeSrc).show();
+	};
+	
+	//左侧边栏的点击事件
+	$('#work_bench').click(function(){  //工作台的点击事件
+		$('#manage_content').show();
+		$('#manage_iframe').hide();
+	});
+	$('#organization_btn,#desktop_organization').click(function(){
+		workHide('#manage_iframe','organization.html');
+	});
+	$('#desktop_staff,#staff_btn').click(function(){  //员工按钮的点击事件
+		workHide('#manage_iframe','staff.html');
 	});
 });
 </script>
