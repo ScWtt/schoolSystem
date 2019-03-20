@@ -21,7 +21,7 @@
 
 	<body>
 		<div class="organization-title">
-			<i class="layui-icon layui-icon-user" style="margin-right: 10px;"></i>员工
+			<i class="layui-icon layui-icon-user" style="margin-right: 10px;"></i>课程
 		</div>
 		
 		<!--员工表格-->
@@ -29,10 +29,15 @@
 			<table class="layui-hide" id="demo" lay-filter="test"></table>
 		</div>
 
+		<!--开课状态开始-->
+		<script type="text/html" id="switchTpl">
+		  <input type="checkbox" name="lessonstate" value="{{d.id}}" lay-skin="switch" lay-text="开始|结束" lay-filter="sexDemo" {{ d.lessontimeend.replace('-','').replace('-','')>=((new Date().getFullYear()+'-'+((new Date().getMonth()+1)<10?'0'+(new Date().getMonth()+1):(new Date().getMonth()+1))+'-'+new Date().getDate()).replace('-','').replace('-',''))? 'checked' : '' }}>
+		</script>
+		<!--开课状态结束-->
 		<script type="text/html" id="toolbarDemo">
 			<div class="layui-btn-container">
 				<button class="layui-btn layui-btn-sm" lay-event="add">
-		    	<i class="layui-icon layui-icon-add-1" style="margin-right: 5px;"></i>新建员工
+		    	<i class="layui-icon layui-icon-add-1" style="margin-right: 5px;"></i>新建课程
 		    </button>
 				<button class="layui-btn layui-btn-sm" lay-event="delete">
 		    	<i class="layui-icon layui-icon-delete" style="margin-right: 5px;"></i>删除
@@ -41,7 +46,7 @@
 		</script>
 
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+			<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
 			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
@@ -50,80 +55,61 @@
 
 		<!--新建员工开始-->
 		<div class="addStaff" id="add_staff" style="display: none;">
-			<div class="new-addstaff">新建员工</div>
+			<div class="new-addstaff">新建课程</div>
 			<form class="layui-form" lay-filter="formTest" style="width: 100%;padding:30px 50px 10px 50px;display: flex;flex-direction: row;justify-content: flex-start;">
-				<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 --	>
-				<!--头像开始-->
-				<div class="staff-image">
-					<div class="layui-form-item">
-					<!--<label class="layui-form-label">上传头像</label>-->
-					<div class="layui-input-inline">
-						<div class="layui-upload">
-							<input type="hidden" name="logo" value="" id="logo">
-							<div class="layui-upload-list">
-								<img class="layui-upload-img" id="demo1" width="100px" height="100px" style="display: inline-block;border-radius: 50px;">
-								<div class="upload-userimg" id="demo2">上传头像</div>
-								<p id="demoText"></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				</div>
-					<!--头像结束-->
 					<div class="staff-form">
 						<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>姓名</label>
+						<label class="layui-form-label"><span style="color: red;">*  </span>课程名称</label>
 						<div class="layui-input-block">
-							<input type="text" name="username" id="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="lessonname" id="lessonname" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>手机号</label>
-						<div class="layui-input-block">
-							<input type="text" name="phone" id="phone" lay-verify="required|phone|number" placeholder="请输入" autocomplete="off" class="layui-input">
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>性别</label>
-						<div class="layui-input-block">
-							<input type="radio" name="sex" value="0" title="男">
-							<input type="radio" name="sex" value="1" title="女" checked>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>人事状态</label>
-						<div class="layui-input-block">
-							<select name="userstate" lay-filter="">
-								<option value="0">在职</option>
-								<option value="1">离职</option>
+						<label class="layui-form-label"><span style="color: red;">*  </span>课程类别</label>
+						<div class="layui-input-block" style="position: relative;">
+							<input type="text" name="lessoncategory" id="lessoncategory" placeholder="请输入" autocomplete="off" class="layui-input">
+							<!--<select name="department" lay-filter="category">
+								<option value="0">adb</option>
+								<option value="1">12a</option>
+								<option value="{{d.id}}">add</option>
 							</select>
+							<button class="addcategory layui-btn" id="add_category">新建类别</button>-->
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>所属部门</label>
+						<label class="layui-form-label">开班数</label>
 						<div class="layui-input-block">
-							<select name="department" lay-filter="">
-								<option value="0">技术部</option>
-								<option value="1">人事</option>
+							<input type="text" name="classnum" id="classnum" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">科目</label>
+						<div class="layui-input-block" style="position: relative;">
+							<input type="text" name="subject" id="subject" placeholder="请输入" autocomplete="off" class="layui-input">
+							<!--<select name="department" lay-filter="">
+								<option value="0">内科</option>
+								<option value="1">外科</option>
+								<option value="2">皮肤科</option>		
 							</select>
+							<button class="addsubject layui-btn" id="add_subject">新建科目</button>-->
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">合同截止</label>
+						<label class="layui-form-label">年级</label>
 						<div class="layui-input-block">
-							<input type="text" name="contracttime" id="contracttime" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="grade" id="grade" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
-						<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>机构账号</label>
+					<div class="layui-form-item">
+						<label class="layui-form-label">开课时间</label>
 						<div class="layui-input-block">
-							<input type="text" name="orgaccount" id="orgaccount" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="lessontimestart" id="lessontimestart" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
-						<div class="layui-form-item">
-						<label class="layui-form-label"><span style="color: red;">*  </span>密码</label>
+					<div class="layui-form-item">
+						<label class="layui-form-label">结课时间</label>
 						<div class="layui-input-block">
-							<input type="password" id="password" name="password" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+							<input type="text" name="lessontimeend" id="lessontimeend" placeholder="请输入" autocomplete="off" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
@@ -167,8 +153,6 @@
 						$ = layui.$ //jquery
 						,
 						demoText = $('#demoText');
-					//向世界问个好
-
 					//监听Tab切换
 					element.on('tab(demo)', function(data) {
 						layer.tips('切换了 ' + data.index + '：' + this.innerHTML, this, {
@@ -220,7 +204,7 @@
 					table.render({
 						elem: '#demo',
 						height: 560,
-						url: '../staff.json' //数据接口
+						url: '../lesson.json' //数据接口
 							,
 						title: '用户表',
 						page: true //开启分页
@@ -234,41 +218,43 @@
 									type: 'checkbox',
 									fixed: 'left'
 								}, {
-									field: 'username',
-									title: '姓名',
-									width: 106,
-								}, {
-									field: 'phone',
-									title: '手机号',
-									width: 120,
-								},{
-									field: 'sex',
-									title: '性别',
-									width: 60,
-								}, {
-									field: 'userstate',
-									title: '人事状态',
-									width: 80,
-								}, {
-									field: 'department',
-									title: '所属部门',
-									width: 100,
-								},{
-									field: 'contracttime',
-									title: '合同到期',
-									width: 100,
-								}, {
-									field: 'orgaccount',
-									title: '机构账号',
-									width: 180,
-								}, {
-									field: 'password',
-									title: '密码',
+									field: 'lessonname',
+									title: '课程名称',
 									width: 140,
+								}, {
+									field: 'lessoncategory',
+									title: '课程类别',
+									width: 146,
+								},{
+									field: 'classnum',
+									title: '开班数',
+									width: 100,
+								}, {
+									field: 'subject',
+									title: '科目',
+									width: 160,
+								},{
+									field: 'grade',
+									title: '年级',
+									width: 80,
+								},{
+									field: 'lessontimestart',
+									title: '开课时间',
+									width: 100,
+								},{
+									field: 'lessontimeend',
+									title: '结课时间',
+									width: 100,
+								},{
+									field: 'lessonstate',
+									title: '课程状态',
+									width: 100,
+									templet: '#switchTpl', 
+									unresize: true
 								},{
 									fixed: 'right',
 									title: '操作',
-									width: 180,
+									width: 140,
 									align: 'center',
 									toolbar: '#barDemo'
 								}
@@ -302,10 +288,13 @@
 					//保存按钮
 					//				var result = {};
 					//				
-									form.on('submit(*)',function(data){
-										result = data.field;
-										console.log('result',result,result.username,result.phone);
-									});
+					form.on('submit(*)',function(data){
+						result = data.field;
+						console.log('result',result,result.username,result.phone);
+					});
+					form.on('switch(sexDemo)', function(obj){
+					    layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+					});
 					//取消按钮
 					$('#addstaff-close').click(function(){
 						$('#add_staff').hide();
@@ -327,43 +316,15 @@
 							});
 						} else if(layEvent === 'edit') {
 							console.log('1111111111',data);
-							var sexEdit = '',userstateEdit = '',departmentEdit = '';
-							switch(data.sex){  //性别单选按钮
-								case '男': 
-								sexEdit = '0';
-								break;
-								case '女': 
-								sexEdit = '1';
-								break;
-							}
-							switch(data.userstate){  //人事状态
-								case '在职': 
-								userstateEdit = '0';
-								break;
-								case '离职': 
-								userstateEdit = '1';
-								break;
-							}
-							switch(data.department){  //所属部门
-								case '技术部': 
-								departmentEdit = '0';
-								break;
-								case '人事': 
-								departmentEdit = '1';
-								break;
-							}
 							form.val('formTest',{
-								"logo":'../images/static/lblb02_r2_c2.jpg',
-								"username":data.username,
-								"phone":data.phone,
-								"sex":sexEdit,
-								"userstate":userstateEdit,
-								"department":departmentEdit,
-								"contracttime":data.contracttime,
-								"orgaccount":data.orgaccount,
-								"password":data.password
+								"lessonname":data.lessonname,
+								"lessoncategory":data.lessoncategory,
+								"classnum":data.classnum,
+								"subject":data.subject,
+								"grade":data.grade,
+								"lessontimestart":data.lessontimestart,
+								"lessontimeend":data.lessontimeend,
 							});
-//							$('#demo1').attr('src', '../images/static/lblb02_r2_c2.jpg');  显示图片的功能
 							$('#add_staff').show();
 							$('#staff_tab').hide();
 						}

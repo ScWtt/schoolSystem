@@ -67,7 +67,7 @@
           <dl class="layui-nav-child">
             <dd><a href="javascript:;" style="margin-left: 34px;">学员</a></dd>
             <dd><a href="javascript:;" style="margin-left: 34px;">班级</a></dd>
-            <dd><a href="javascript:;" style="margin-left: 34px;">课程</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="lesson_btn">课程</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
@@ -103,7 +103,7 @@
 						<a href="#" id="desktop_staff">员工</a>
 					</li>
 					<li class="nav-title">
-						<a href="#">课程</a>
+						<a href="#" id="desktop_lesson">课程</a>
 					</li>
 					<li class="nav-title">
 						<a href="#">教室设置</a>
@@ -296,6 +296,9 @@ layui.use(['element','carousel','jquery'], function() {
 	});
 	$('#desktop_staff,#staff_btn').click(function(){  //员工按钮的点击事件
 		workHide('#manage_iframe','staff.html');
+	});
+	$('#desktop_lesson,#lesson_btn').click(function(){
+		workHide('#manage_iframe','lesson.html');
 	});
 });
 </script>
