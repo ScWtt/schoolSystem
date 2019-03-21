@@ -10,124 +10,88 @@
 		<link rel="stylesheet" type="text/css" href="../css/layui.css" />
 		<!--../organization.json-->
 	</head>
+	<style type="text/css">
+		.seat-show{
+			position: relative;
+			width: 530px;
+			height: 160px;
+			background-color: #eee;
+		}
+		.seat-board{
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -133px;
+			width: 290px;
+			height: 25px;
+			line-height: 25px;
+			color: #fff;
+			text-align: center;
+			background: url(../images/static/board.png) no-repeat;
+			background-size: 100% 100%;
+		}
+		.seat-show-list{
+			width: 100%;
+			padding-top: 36px;
+		}
+		.seat-show-list-row01{
+			display: table;
+		}
+		.seat-show-list-col{
+			display: inline-block;
+			width: 30px;
+		}
+	</style>
 
 	<body>  
-<!--<div style="margin-bottom: 5px;">          
- 
- 示例-970 
-<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
- 
-</div>-->
-<div class="">
-	
-</div>
- 
-<div class="layui-btn-group demoTable">
-  <button class="layui-btn" data-type="getCheckData">获取选中行数据</button>
-  <button class="layui-btn" data-type="getCheckLength">获取选中数目</button>
-  <button class="layui-btn" data-type="isAll">验证是否全选</button>
-</div>
- 
-<table class="layui-table" lay-data="{url:'../organization.json', page:true, id:'idTest'}" lay-filter="demo">
-  <thead>
-    <tr>
-      <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-      <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-      <th lay-data="{field:'username', width:80}">用户名</th>
-      <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-      <th lay-data="{field:'city', width:80}">城市</th>
-      <th lay-data="{field:'sign', width:160}">签名</th>
-      <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
-      
-      <th lay-data="{field:'classify', width:80}">职业</th>
-      <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-      <th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>
-      <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-    </tr>
-  </thead>
-</table>
- 
-<script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
-               
-          
-<script src="../layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-layui.use('table', function(){
-  var table = layui.table;
-  //监听表格复选框选择
-  table.on('checkbox(demo)', function(obj){
-    console.log(obj)
-  });
-  //监听头工具栏事件
-  table.on('toolbar(demo)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id)
-    ,data = checkStatus.data; //获取选中的数据
-    switch(obj.event){
-      case 'add':
-        layer.msg('添加');
-      break;
-      case 'update':
-        if(data.length === 0){
-          layer.msg('请选择一行');
-        } else if(data.length > 1){
-          layer.msg('只能同时编辑一个');
-        } else {
-          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-        }
-      break;
-      case 'delete':
-        if(data.length === 0){
-          layer.msg('请选择一行');
-        } else {
-          layer.msg('删除');
-        }
-      break;
-    };
-  });
-  //监听工具条
-  table.on('tool(demo)', function(obj){
-    var data = obj.data;
-    if(obj.event === 'detail'){
-      layer.msg('ID：'+ data.id + ' 的查看操作');
-    } else if(obj.event === 'del'){
-      layer.confirm('真的删除行么', function(index){
-        obj.del();
-        layer.close(index);
-      });
-    } else if(obj.event === 'edit'){
-      layer.alert('编辑行：<br>'+ JSON.stringify(data))
-    }
-  });
-  
-  var $ = layui.$, active = {
-    getCheckData: function(){ //获取选中数据
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.alert(JSON.stringify(data));
-    }
-    ,getCheckLength: function(){ //获取选中数目
-      var checkStatus = table.checkStatus('idTest')
-      ,data = checkStatus.data;
-      layer.msg('选中了：'+ data.length + ' 个');
-    }
-    ,isAll: function(){ //验证是否全选
-      var checkStatus = table.checkStatus('idTest');
-      layer.msg(checkStatus.isAll ? '全选': '未全选')
-    }
-  };
-  
-  $('.demoTable .layui-btn').on('click', function(){
-    var type = $(this).data('type');
-    active[type] ? active[type].call(this) : '';
-  });
-});
-</script>
-
+		<form class="layui-form" action="" style="width: 460px;height: 400px;">
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*  </span>教室名称</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" placeholder="请输入" name="" id="" value="" lay-verify="required"/>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">设置座位</label>
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: 10px;">行：</label>
+					<div class="layui-input-inline" style="width: 110px;">
+						<input type="text" class="layui-input" value="0" name="" id="" value="" style="width: 100px;"/>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: 10px;">列：</label>
+					<div class="layui-input-inline" style="width: 110px;">
+						<input type="text" class="layui-input" value="0" name="" id="" value="" style="width: 100px;"/>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">座位示例</label>
+				<div class="layui-input-block">
+					<div class="seat-title">
+						当前可容纳人数：36人;点击座位可设置可用状态
+					</div>
+					<div class="seat-show">
+						<div class="seat-board">讲台</div>
+						<div class="seat-show-list">
+							<ul class="seat-show-list-row01">
+								<li class="">
+									<ul class="seat-show-list-col">
+										<li>1列</li>
+										<li>2列</li>
+										<li>3列</li>
+										<li>4列</li>
+										<li>5列</li>
+										<li>6列</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 </body>
 
 </html>

@@ -106,7 +106,7 @@
 						<a href="#" id="desktop_lesson">课程</a>
 					</li>
 					<li class="nav-title">
-						<a href="#">教室设置</a>
+						<a href="#" id="desktop_classroom">教室设置</a>
 					</li>
 					<li class="nav-title">
 						<a href="#">班级</a>
@@ -297,8 +297,11 @@ layui.use(['element','carousel','jquery'], function() {
 	$('#desktop_staff,#staff_btn').click(function(){  //员工按钮的点击事件
 		workHide('#manage_iframe','staff.html');
 	});
-	$('#desktop_lesson,#lesson_btn').click(function(){
+	$('#desktop_lesson,#lesson_btn').click(function(){  //课程的点击
 		workHide('#manage_iframe','lesson.html');
+	});
+	$('#desktop_classroom').click(function(){   //教室的点击
+		workHide('#manage_iframe','classroom.html');
 	});
 });
 </script>
