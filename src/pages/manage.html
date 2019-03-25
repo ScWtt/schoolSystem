@@ -65,8 +65,8 @@
           	<i class="layui-icon layui-icon-read" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
           	教务中心</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;" style="margin-left: 34px;">学员</a></dd>
-            <dd><a href="javascript:;" style="margin-left: 34px;">班级</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="student_btn">学员</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="class_btn">班级</a></dd>
             <dd><a href="javascript:;" style="margin-left: 34px;" id="lesson_btn">课程</a></dd>
           </dl>
         </li>
@@ -109,10 +109,10 @@
 						<a href="#" id="desktop_classroom">教室设置</a>
 					</li>
 					<li class="nav-title">
-						<a href="#">班级</a>
+						<a href="#" id="desktop_class">班级</a>
 					</li>
 					<li class="nav-title">
-						<a href="#">学员导入</a>
+						<a href="#" id="desktop_student">学员导入</a>
 					</li>
 				</ul>
 			</div>
@@ -291,7 +291,7 @@ layui.use(['element','carousel','jquery'], function() {
 		$('#manage_content').show();
 		$('#manage_iframe').hide();
 	});
-	$('#organization_btn,#desktop_organization').click(function(){
+	$('#organization_btn,#desktop_organization').click(function(){  //组织架构
 		workHide('#manage_iframe','organization.html');
 	});
 	$('#desktop_staff,#staff_btn').click(function(){  //员工按钮的点击事件
@@ -302,6 +302,12 @@ layui.use(['element','carousel','jquery'], function() {
 	});
 	$('#desktop_classroom').click(function(){   //教室的点击
 		workHide('#manage_iframe','classroom.html');
+	});
+	$('#class_btn,#desktop_class').click(function(){   //班级的点击
+		workHide('#manage_iframe','class.html');
+	});
+	$('#student_btn,#desktop_student').click(function(){   //学员的点击
+		workHide('#manage_iframe','student.html');
 	});
 });
 </script>

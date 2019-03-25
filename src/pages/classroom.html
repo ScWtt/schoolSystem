@@ -39,7 +39,7 @@
 		</script>
 		
 		<script type="text/html" id="barDemo">
-			<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+			<!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
 			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
@@ -50,17 +50,73 @@
 		<div id="add" style="display: none;">
 			<div class="layui-row">
 				<div class="addTitle" style="width: 100%;height: 40px;color: #fff;font-size: 15px;line-height: 40px;background-color: #2996e8;text-align: center;">
-					新建
+					新建教室
 				</div>
 			</div>
 			<div class="layui-row" style="margin: 20px 40px;">
 				<form class="layui-form layui-form-pane1" action="" >
 					<!--教室的座位表开始-->
+					<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*  </span>教室名称</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input" placeholder="请输入" name="" id="classroomName" value="" lay-verify="required" style="width: 300px;"/>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">设置座位</label>
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: 10px;">行：</label>
+					<div class="layui-input-inline" style="width: 110px;">
+						<input type="number" class="layui-input" value="0" name="" id="row" value="" style="width: 100px;"/>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: 10px;">列：</label>
+					<div class="layui-input-inline" style="width: 110px;">
+						<input type="number" class="layui-input" value="0" name="" id="col" value="" style="width: 100px;"/>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<div class="set-btn" id="sureSet">确定</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">座位示例</label>
+				<div class="layui-input-block">
+					<div class="seat-title">
+						当前可容纳人数：<span id="numberPerson">36</span>人;点击座位可设置可用状态
+					</div>
+					<div class="seat-show">
+						<div class="seat-board">讲台</div>
+						<div class="seat-show-list">
+							<ul class="seat-show-list-row01">
+								<li class="">
+									<ul class="seat-show-list-col" id="setCol">
+										<!--<li><span>1列</span></li>-->
+									</ul>
+								</li>
+							</ul>
+							<!--座位开始-->
+							<div class="seat-show-wrap">
+								<ul class="seats-show-wrap-content">
+									<li class="seats-show-wrap-contentRow" id="setRow">
+										<!--<ul class="clearfix">
+											<li class="seat-show-wrap-row">
+												1行
+											</li>
+										</ul>-->
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 					<!--教室的座位表结束-->
 				    
 					<div class="layui-form-item" style="margin-top: 30px;">
-					    <div class="layui-input-block">
-					      <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: #2996e8;margin-right: 20px;">保存</button>
+					    <div class="layui-input-block" style="display: flex;flex-direction: row;justify-content: space-between;">
+					      <button class="layui-btn" lay-submit lay-filter="formDemo" style="background-color: #2996e8;">保存</button>
 					      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					      <!--<button type="button" class="layui-btn layui-btn-primary" id="wtt">编辑</button>-->
 					    </div>
@@ -105,7 +161,7 @@
 				table.render({
 					elem: '#demo',
 					height: 560,
-					url: '../organization.json' //数据接口
+					url: '../classroom.json' //数据接口
 						,
 					title: '用户表',
 					page: true //开启分页
@@ -120,19 +176,24 @@
 								fixed: 'left'
 							}, {
 								field: 'id',
-								title: 'ID',
+								title: '序号',
 								width: 150,
 								sort: true,
 								fixed: 'left',
-								totalRowText: '合计：'
+								totalRow: true
 							}, {
-								field: 'username',
-								title: '部门名称',
-								width: 320,
+								field: 'classroomName',
+								title: '教室名称',
+								width: 320
 							}, {
-								field: 'phone',
-								title: '电话',
-								width: 300,
+								field: 'setsort',
+								title: '座位排列',
+								width: 150,
+								sort: true
+							}, {
+								field: 'number',
+								title: '可容纳人数',
+								width: 150,
 								sort: true,
 								totalRow: true
 							}, {
@@ -153,13 +214,17 @@
 					switch(obj.event) {
 						case 'add':
 							layer.open({
-								area: ['400px', '260px'],
+								area: ['760px', '500px'],
 								title: false,
 								type:1,
 								content:$('#add'),
 								success:function(){
-									$('#name').val('');
-									$('#phone').val('');
+									$('#classroomName').val('');
+									$('#row').val('');
+									$('#col').val('');
+									$('#setRow').empty();
+									$('.clearfix').empty();
+									$('#setCol').empty();
 								}
 				});
 							break;
@@ -200,18 +265,60 @@
 						});
 					} else if(layEvent === 'edit') {
 						layer.open({
-									area: ['400px', '260px'],
+									area: ['760px', '500px'],
 									title: false,
 									type:1,
 									content:$('#add'),
 									success:function(){
-										$('#name').val(data.username);
-										$('#phone').val(data.phone);
+										var arr = data.setsort.split('行');
+										var row = parseInt(arr[0]),col = parseInt(arr[1]);
+										$('#classroomName').val(data.classroomName);
+										$('#row').val(row);
+										$('#col').val(col);
+										//座位设置开始
+										setMethod();
+										//座位设置结束
 									}
 								});
 					}
 				});
-
+				
+				//座位排列的方法
+				function setMethod(){
+					$('#setRow').empty();
+				$('.clearfix').empty();
+				$('#setCol').empty();
+				var col = parseInt($('#col').val()),row = parseInt($('#row').val());
+				$('#numberPerson').text(col*row);
+					for(var i=0;i<row;i++){
+						$('#setRow').append(`
+							<ul class="clearfix">
+								<li class="seat-show-wrap-row">
+									${i+1}行
+								</li>
+							</ul>
+						`);
+					}
+					for(var j=0;j<col;j++){
+						$('.clearfix').append(`
+							<li class="seat-show-wrap-rowele">
+								<i class="seat-show-wrap-rowele-position"></i>
+							</li>
+						`);
+						$('#setCol').append(`
+							<li><span>${j+1}列</span></li>
+						`);
+					}
+					if(col==0||row==0){
+						$('#setRow').empty();
+						$('.clearfix').empty();
+						$('#setCol').empty();
+					};
+				}
+				//座位设置的确定按钮
+				$('#sureSet').click(function(){
+					setMethod();
+				});
 				//分页
 				laypage.render({
 					elem: 'pageDemo' //分页容器的id
