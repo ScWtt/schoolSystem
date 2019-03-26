@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<title>layui在线调试在点击示例的时候直接显示的示例</title>
 		<link rel="stylesheet" href="../css/layui.css" media="all">
-		<link rel="stylesheet" type="text/css" href="../css/organization.css" />
+		<link rel="stylesheet" type="text/css" href="../css/addStaff.css" />
 		<style>
 			body {
 				margin: 10px;
@@ -48,6 +48,78 @@
 	
 		<blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
 		
+		<!--新建班级开始-->
+		<div class="addclass" id="add_class" style="display: none;">
+			<div class="new-addclass">新建课程</div>
+			<form class="layui-form" lay-filter="formTest" style="width: 100%;padding:30px 50px 10px 50px;">
+				<!--<div style="display: flex;flex-direction: row;">-->
+				<div style="width: 40%;">
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>班级名称</label>
+						<div class="layui-input-block">
+							<input type="text" name="classname" id="classname" value="" class="layui-input"/>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>选择课程</label>
+						<div class="layui-input-block">
+							<select name="lesson" lay-filter="">
+								<option value="0">111</option>
+								<option value="1">333</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>班级人数</label>
+						<div class="layui-input-block">
+							<input type="number" name="number" id="number" value="" class="layui-input"/>
+						</div>
+					</div>
+				</div>
+				<div style="width: 40%;">
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>教室</label>
+						<div class="layui-input-block">
+							<select name="classroom" lay-filter="">
+								<option value="0">999</option>
+								<option value="1">333</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>教师</label>
+						<div class="layui-input-block">
+							<select name="teacher" lay-filter="">
+								<option value="0">wtt</option>
+								<option value="1">iit</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">开班时间</label>
+						<div class="layui-input-block">
+							<input type="text" name="coursedate" id="coursedate" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">结班时间</label>
+						<div class="layui-input-block">
+							<input type="text" name="endclassdate" id="endclassdate" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<!--</div>-->
+				
+				<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="*">保存</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button type="button" class="layui-btn layui-btn-primary" id="addstaff-close">取消</button>
+						</div>
+					</div>
+			</form>
+		</div>
+		<!--新建班级结束-->
 		
 		<script src="../layui.js"></script>
 		<script>
@@ -99,13 +171,13 @@
 								type: 'checkbox',
 								fixed: 'left'
 							},{
-								field: 'className',
+								field: 'classname',
 								title: '班级名称',
-								width: 220
+								width: 160
 							}, {
 								field: 'number',
 								title: '人数',
-								width: 120,
+								width: 60,
 								sort: true
 							}, {
 								field: 'teacher',
@@ -117,15 +189,24 @@
 								title: '所属课程',
 								width: 160,
 								sort: true,
+							},{
+								field: 'classroom',
+								title: '教室',
+								width: 160
 							}, {
 								field: 'coursedate',
 								title: '开班日期',
-								width: 120,
+								width: 110,
+								sort: true,
+							},{
+								field: 'endclassdate',
+								title: '结班日期',
+								width: 110,
 								sort: true,
 							}, {
 								fixed: 'right',
 								title:'操作',
-								width: 300,
+								width: 160,
 								align: 'center',
 								toolbar: '#barDemo'
 							}
@@ -139,7 +220,17 @@
 						data = checkStatus.data; //获取选中的数据
 					switch(obj.event) {
 						case 'add':
-							alert('新建');
+							form.val('formTest',{
+								"classname":'',
+								"lesson":'',
+								"number":'',
+								"classroom":'',
+								"teacher":'',
+								"coursedate":'',
+								"endclassdate":'',
+							});
+							$('#class_list').hide();
+							$('#add_class').show();							
 							break;
 						case 'delete':
 							if(data.length === 0) {
@@ -154,6 +245,13 @@
 							}
 							break;
 					};
+				});
+				//开课和结课时间
+				laydate.render({
+						elem:'#coursedate'
+				});
+				laydate.render({
+					elem:'#classtimeend'
 				});
 				//保存按钮
 //				var result = {};
@@ -177,10 +275,59 @@
 							//向服务端发送删除指令
 						});
 					} else if(layEvent === 'edit') {
-						alert('编辑');
+						var lessonEdit = '',classroomEdit = '',teacherEdit = '';
+						switch(data.lesson){  //选择课程
+							case '111':
+							lessonEdit = '0';
+							break;
+							case '333':
+							lessonEdit = '1';
+							break;
+							default:
+							lessonEdit = data.lesson;
+							break;
+						};
+						switch(data.classroom){  //选择课程
+							case '999':
+							classroomEdit = '0';
+							break;
+							case '333':
+							classroomEdit = '1';
+							break;
+							default:
+							classroomEdit = data.classroom;
+							break;
+						};
+						switch(data.teacher){  //选择课程
+							case 'wtt':
+							teacherEdit = '0';
+							break;
+							case 'iit':
+							teacherEdit = '1';
+							break;
+							default:
+							teacherEdit = data.teacher;
+							break;
+						};
+						form.val('formTest',{
+								"classname":data.classname,
+								"lesson":lessonEdit,
+								"number":data.number,
+								"classroom":classroomEdit,
+								"teacher":teacherEdit,
+								"coursedate":data.coursedate,
+								"endclassdate":data.endclassdate,
+							});
+							$('#class_list').hide();
+							$('#add_class').show();
 					}
 				});
 				
+				//取消按钮
+				$('#addstaff-close').click(function(){
+					$('#class_list').show();
+					$('#add_class').hide();
+				});
 				
 				//分页
 				laypage.render({

@@ -1,0 +1,11 @@
+@charset "utf-8";
+.student-title{
+	padding: 15px 15px;
+	width: 100%;
+	background-color: #fff;
+	color: #2996e8;
+}
+.student-content{
+	background-color: #FFF;
+	padding: 10px 20px;
+}

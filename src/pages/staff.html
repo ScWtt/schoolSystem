@@ -282,6 +282,17 @@
 							data = checkStatus.data; //获取选中的数据
 						switch(obj.event) {
 							case 'add':
+							form.val('formTest',{
+								"logo":'',
+								"username":'',
+								"phone":'',
+								"sex":'',
+								"userstate":'',
+								"department":'',
+								"contracttime":'',
+								"orgaccount":'',
+								"password":''
+							});
 								$('#staff_tab').hide();
 								$('#add_staff').show();
 								break;
@@ -363,7 +374,6 @@
 								"orgaccount":data.orgaccount,
 								"password":data.password
 							});
-//							$('#demo1').attr('src', '../images/static/lblb02_r2_c2.jpg');  显示图片的功能
 							$('#add_staff').show();
 							$('#staff_tab').hide();
 						}

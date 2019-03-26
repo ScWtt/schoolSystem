@@ -233,6 +233,15 @@
 							data = checkStatus.data; //获取选中的数据
 						switch(obj.event) {
 							case 'add':
+							form.val('formTest',{
+								"lessonname":'',
+								"lessoncategory":'',
+								"classnum":'',
+								"subject":'',
+								"grade":'',
+								"lessontimestart":'',
+								"lessontimeend":'',
+							});
 								$('#staff_tab').hide();
 								$('#add_staff').show();
 								break;
@@ -249,6 +258,13 @@
 								}
 								break;
 						};
+					});
+					//开课和结课时间
+					laydate.render({
+						elem:'#lessontimestart'
+					});
+					laydate.render({
+						elem:'#lessontimeend'
 					});
 					//保存按钮
 					//				var result = {};

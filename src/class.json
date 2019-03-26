@@ -5,67 +5,78 @@
 "data":[
 	{
 		"id":1,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"wtt",
 		"course":"111",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09",
+		"classroom":"222"
 	},{
 		"id":2,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"wtt",
 		"course":"222",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09",
+		"classroom":"999"
 	},{
 		"id":3,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"yyy",
 		"course":"333",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":4,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"ddd",
 		"course":"111",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":5,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"rrr",
 		"course":"555",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":6,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"www",
 		"course":"455",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":7,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"ww",
 		"course":"fff",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":8,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"rrr",
 		"course":"333",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	},{
 		"id":9,
-		"className":"511班",
+		"classname":"511班",
 		"number":"36",
 		"teacher":"vvv",
 		"course":"588",
-		"coursedate":"2019-03-25"
+		"coursedate":"2019-03-25",
+		"endclassdate":"2019-04-09"
 	}
 ]
 }
