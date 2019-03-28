@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/layui.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../css/teacherinfo.css"/>
+	</head>
+	<body>
+		<div class="teacherinfo-title">
+			<i class="layui-icon layui-icon-user" style="margin-right: 10px;"></i>基本资料
+		</div>
+		<!--信息显示-->
+		<div class="teacherinfo-content" id="info_content">
+			<div class="layui-row">
+				<div class="layui-col-md4">
+					<div class="teacher-head">
+						<img src="../images/static/home-bg.jpg" class="layui-upload-img" id="teacherimg" width="100px" height="100px" style="display: inline-block;border-radius: 50px;">
+						<p class="teacher-head-name" id="teachername">wtt</p>
+					</div>
+				</div>
+				<div class="layui-col-md8" style="margin-top: 50px;">
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							性别：
+						</div>
+						<div class="layui-col-md10" id="teachersex">男</div>
+					</div>
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							手机号：
+						</div>
+						<div class="layui-col-md10" id="teacherphone">1234567890</div>
+					</div>
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							人事状态：
+						</div>
+						<div class="layui-col-md10" id="teacherstate">在职</div>
+					</div>
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							所属部门：
+						</div>
+						<div class="layui-col-md10" id="teacherdepartment">技术部</div>
+					</div>
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							机构账号：
+						</div>
+						<div class="layui-col-md10" id="teachercount">5555555</div>
+					</div>
+					<div class="layui-row space">
+						<div class="layui-col-md2">
+							合同到期：
+						</div>
+						<div class="layui-col-md10" id="teachertime">2019-06-01</div>
+					</div>
+					<div class="layui-row spaceedit">
+						<button class="layui-col-md2 layui-btn" id="edit_btn">编辑</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--编辑-->
+		<div class="teacheredit" id="edit_teacher" style="display: none;">
+			<form class="layui-form" lay-filter="formTest" style="width: 100%;padding:30px 50px 10px 50px;display: flex;flex-direction: row;justify-content: flex-start;">
+				<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 --	>
+				<!--头像开始-->
+				<div class="staff-image">
+					<div class="layui-form-item">
+					<!--<label class="layui-form-label">上传头像</label>-->
+					<div class="layui-input-inline">
+						<div class="layui-upload">
+							<input type="hidden" name="logo" value="" id="logo">
+							<div class="layui-upload-list">
+								<img class="layui-upload-img" id="demo1" width="100px" height="100px" style="display: inline-block;border-radius: 50px;">
+								<div class="upload-userimg" id="demo2">上传头像</div>
+								<p id="demoText"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+					<!--头像结束-->
+				<div class="staff-form">
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>姓名</label>
+						<div class="layui-input-block">
+							<input type="text" name="username" id="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>手机号</label>
+						<div class="layui-input-block">
+							<input type="text" name="phone" id="phone" lay-verify="required|phone|number" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>性别</label>
+						<div class="layui-input-block">
+							<input type="radio" name="sex" value="0" title="男">
+							<input type="radio" name="sex" value="1" title="女" checked>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>人事状态</label>
+						<div class="layui-input-block">
+							<select name="userstate" lay-filter="">
+								<option value="0">在职</option>
+								<option value="1">离职</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>所属部门</label>
+						<div class="layui-input-block">
+							<select name="department" lay-filter="">
+								<option value="0">技术部</option>
+								<option value="1">人事</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">合同截止</label>
+						<div class="layui-input-block">
+							<input type="text" name="contracttime" id="contracttime" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+						<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>机构账号</label>
+						<div class="layui-input-block">
+							<input type="text" name="orgaccount" id="orgaccount" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+						<div class="layui-form-item">
+						<label class="layui-form-label"><span style="color: red;">*  </span>密码</label>
+						<div class="layui-input-block">
+							<input type="password" id="password" name="password" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="*">保存</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button type="button" class="layui-btn layui-btn-primary" id="edit_teacherClose">取消</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
+			
+			<script src="../layui.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				layui.use(['jquery','form','upload'],function(){
+					var $ = layui.$,
+						form = layui.form,
+						upload = layui.upload;
+					var teachername = $("#teachername").text(),
+						teachersex = $("#teachersex").text(),
+						teacherphone = $("#teacherphone").text(),
+						teacherstate = $("#teacherstate").text(),
+						teachercount = $("#teachercount").text(),
+						teachertime = $("#teachertime").text(),
+						teacherdepartment = $("#teacherdepartment").text(),
+						sexEdit = '',userstateEdit = '',departmentEdit = '';
+						switch(teachersex){  //性别单选按钮
+								case '男': 
+								sexEdit = '0';
+								break;
+								case '女': 
+								sexEdit = '1';
+								break;
+							}
+							switch(teacherstate){  //人事状态
+								case '在职': 
+								userstateEdit = '0';
+								break;
+								case '离职': 
+								userstateEdit = '1';
+								break;
+							}
+							switch(teacherdepartment){  //所属部门
+								case '技术部': 
+								departmentEdit = '0';
+								break;
+								case '人事': 
+								departmentEdit = '1';
+								break;
+							}
+					teacherinfo = {
+							'username': teachername,
+							'sex':sexEdit,
+							'phone':teacherphone,
+							'userstate':userstateEdit,
+							'orgaccount':teachercount,
+							'contracttime':teachertime,
+							'department':departmentEdit,
+							'password':'',
+							'logo':''
+					},
+
+					//编辑按钮
+					$('#edit_btn').click(function(){
+						$('#info_content').hide();
+						$('#edit_teacher').show();
+						//编辑页渲染
+						form.val('formTest',teacherinfo);
+					});
+					
+					//编辑页取消按钮
+					$("#edit_teacherClose").click(function(){
+						$('#info_content').show();
+						$('#edit_teacher').hide();
+					});
+					
+					//保存按钮
+					
+					
+					//上传头像开始
+					var myVarate = '../images/static/home-bg.jpg';
+					$('#demo1').attr('src', myVarate); //页面初始化的时候渲染图片
+					//普通图片上传
+					var uploadInst = upload.render({
+						elem: '#demo1,#demo2',
+						url: 'http://bolg.lengff.xyz/test', //这里填写你的上传地址
+						accept: 'images',
+						method: 'post',
+						acceptMime: 'image/*',
+						before: function(obj) {
+							/*如果您不想用上面的URL 进行上传,也可以在这里,添加你的上传方式*/
+							obj.preview(function(index, file, result) {
+								$('#demo1').attr('src', result); //图片链接（base64）
+							});
+						},
+						done: function(res) {
+							if(res.code == 200) { //长传成功(具体返回code 看后台是怎么处理的)
+								return layer.msg('上传失败');
+								demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+							} else {
+								layer.msg('图片上传成功!');
+							}
+						},
+						error: function() {
+							demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+						}
+					});
+					//上传失败监听重试按钮的操作
+//					demoText.find('.demo-reload').on('click', function() {
+//						uploadInst.upload();
+//					});
+					//上传头像结束
+				});
+			</script>
+	</body>
+</html>

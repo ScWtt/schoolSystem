@@ -1,0 +1,38 @@
+{
+"code":0,
+"msg":"",
+"count":1000,
+"data":[
+	{
+		"id":0,
+		"examination":"6600"
+	},{
+		"id":1,
+		"examination":"6600"
+	},{
+		"id":2,
+		"examination":"6600"
+	},{
+		"id":3,
+		"examination":"6600"
+	},{
+		"id":4,
+		"examination":"6600"
+	},{
+		"id":5,
+		"examination":"6600"
+	},{
+		"id":6,
+		"examination":"6600"
+	},{
+		"id":7,
+		"examination":"6600"
+	},{
+		"id":8,
+		"examination":"6600"
+	},{
+		"id":9,
+		"examination":"6600"
+	}
+]
+}

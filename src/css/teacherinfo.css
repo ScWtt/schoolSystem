@@ -1,0 +1,40 @@
+@charset "utf-8";
+.teacherinfo-title{
+	padding: 15px 15px;
+	width: 100%;
+	background-color: #fff;
+	color: #2996e8;
+}
+.teacherinfo-content{
+	margin-top: 20px;
+	background-color: #FFF;
+	padding: 30px 20px;
+	height: 400px;
+}
+.teacher-head-name{
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.space{
+	width: 100%;
+	height: 40px;
+}
+.spaceedit{
+	margin-top: 20px;
+}
+.teacheredit{
+	margin-top: 20px;
+	background-color: #fff;
+}
+.upload-userimg{
+	cursor: default;
+	margin-top: 10px;	
+	width: 100px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #009688;
+	color: #fff;
+}

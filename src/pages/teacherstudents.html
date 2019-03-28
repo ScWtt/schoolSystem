@@ -22,26 +22,11 @@
 
 	<body>
 		<div class="student-title">
-			<i class="layui-icon layui-icon-home" style="margin-right: 10px;"></i>学员
+			<i class="layui-icon layui-icon-home" style="margin-right: 10px;"></i>学员名册
 		</div>
-		<div class="layui-tab layui-tab-brief student-content" id="student_content" lay-filter="docDemoTabBrief" style="height:550px;width: 100%;overflow: scroll;">
-		  <ul class="layui-tab-title">
-		    <li class="layui-this">学员名册</li>
-		    <li>学员报读列表</li>
-		    <li>学员成绩</li>
-		  </ul>
-		  <div class="layui-tab-content">
-		    <div class="layui-tab-item layui-show">
+		    <div class="student-content">
 		    	<table class="layui-hide" id="demo" lay-filter="test"  style="overflow: scroll;" ></table>
 		    </div>
-		    <div class="layui-tab-item">
-		    	<table class="layui-hide" id="studentred" lay-filter="test"  style="overflow: scroll;" ></table>
-		    </div>
-		    <div class="layui-tab-item">
-		    	<table class="layui-hide" id="studentscore" lay-filter="test"  style="overflow: scroll;" ></table>
-		    </div>
-		  </div>
-		</div> 
 		
 		<!--学员状态开始-->
 		<script type="text/html" id="switchstu">
@@ -58,7 +43,7 @@
 		</script>
 		
 		<script type="text/html" id="barDemo">
-			<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 	
@@ -91,13 +76,6 @@
 					,form = layui.form  //form表单
 					,$ = layui.$  //jquery
 
-				//监听Tab切换
-				element.on('tab(demo)', function(data) {
-					layer.tips('切换了 ' + data.index + '：' + this.innerHTML, this, {
-						tips: 1
-					});
-				});
-
 				//执行一个 table 学员名册实例
 				table.render({
 					elem: '#demo',
@@ -112,146 +90,45 @@
 					cols: [  //部门名称    //电话
 						[ //表头
 							{
-								type: 'checkbox',
-								fixed: 'left'
-							},{
-								field: 'studentname',
-								title: '学员姓名',
-								width: 140,
-							},{
-								field: 'sex',
-								title: '性别',
-								width: 80,
-							},{
-								field: 'relation',
-								title: '关系',
-								width: 133,
-							},{
-								field: 'phone',
-								title: '联系方式',
-								width: 120,
-							},{
-								field: 'tuition',
-								title: '总学费',
-								width: 100,
-							},{
-								field: 'betuition',
-								title: '实缴学费',
-								width: 100,
-							},{
-								field: 'arrears',
-								title: '欠费',
-								width: 100,
-							},{
-								field: 'studentid',
-								title: '学号',
-								width: 120,
-								unresize: true
-							},{
-								fixed: 'right',
-								title: '操作',
-								width: 140,
-								align: 'center',
-								toolbar: '#barDemo'
-							}
-						]
-					]
-				});
-				
-				//执行一个 table 学员报读列表实例
-				table.render({
-					elem: '#studentred',
-					height: 560,
-					url: '../studentroster.json', //数据接口
-					title: '用户表',
-					page: true //开启分页
-						,
-					toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-						//  ,totalRow: true //开启合计行
-						,
-					cols: [  //部门名称    //电话
-						[ //表头
-							{
 									type: 'checkbox',
 									fixed: 'left'
 								},{
 									field: 'studentname',
 									title: '学员姓名',
-									width: 140
-								},{
-									field: 'lessonred',
-									title: '报读课程',
-									width: 200
-								},{
-									field: 'classname',
-									title: '班级名称',
-									width: 245
-								},{
-									field: 'teacher',
-									title: '教师',
-									width: 140
-								},{
-									field: 'studentstate',
-									title: '学员状态',
 									width: 140,
-									templet: '#switchstu'
 								},{
-									fixed: 'right',
-									title: '操作',
-									width: 170,
-									align: 'center',
-									toolbar: '#barDemo'
-								}
-						]
-					]
-				});
-				
-				//执行一个 table 学员成绩实例
-				table.render({
-					elem: '#studentscore',
-					height: 560,
-					url: '../studentroster.json', //数据接口
-					title: '用户表',
-					page: true //开启分页
-						,
-					toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-						//  ,totalRow: true //开启合计行
-						,
-					cols: [  //部门名称    //电话
-						[ //表头
-							{
-									type: 'checkbox',
-									fixed: 'left'
+									field: 'sex',
+									title: '性别',
+									width: 80,
 								},{
-									field: 'studentname',
-									title: '学员姓名',
-									width: 140
+									field: 'relation',
+									title: '关系',
+									width: 133,
 								},{
 									field: 'phone',
 									title: '联系方式',
-									width: 200
+									width: 120,
 								},{
-									field: 'score',
-									title: '成绩',
+									field: 'tuition',
+									title: '总学费',
 									width: 100,
-									score:true
 								},{
-									field: 'examination',
-									title: '考试',
-									width: 145,
-									score:true
+									field: 'betuition',
+									title: '实缴学费',
+									width: 100,
 								},{
-									field: 'teacher',
-									title: '教师',
-									width: 140
+									field: 'arrears',
+									title: '欠费',
+									width: 100,
 								},{
-									field: 'classname',
-									title: '班级',
-									width: 140,
+									field: 'studentid',
+									title: '学号',
+									width: 120,
+									unresize: true
 								},{
 									fixed: 'right',
 									title: '操作',
-									width: 170,
+									width: 140,
 									align: 'center',
 									toolbar: '#barDemo'
 								}

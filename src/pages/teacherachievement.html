@@ -22,32 +22,11 @@
 
 	<body>
 		<div class="student-title">
-			<i class="layui-icon layui-icon-home" style="margin-right: 10px;"></i>学员
+			<i class="layui-icon layui-icon-home" style="margin-right: 10px;"></i>学员成绩
 		</div>
-		<div class="layui-tab layui-tab-brief student-content" id="student_content" lay-filter="docDemoTabBrief" style="height:550px;width: 100%;overflow: scroll;">
-		  <ul class="layui-tab-title">
-		    <li class="layui-this">学员名册</li>
-		    <li>学员报读列表</li>
-		    <li>学员成绩</li>
-		  </ul>
-		  <div class="layui-tab-content">
-		    <div class="layui-tab-item layui-show">
-		    	<table class="layui-hide" id="demo" lay-filter="test"  style="overflow: scroll;" ></table>
-		    </div>
-		    <div class="layui-tab-item">
-		    	<table class="layui-hide" id="studentred" lay-filter="test"  style="overflow: scroll;" ></table>
-		    </div>
-		    <div class="layui-tab-item">
+		    <div class="student-content" style="margin-top: 20px;" id="achievement_table">
 		    	<table class="layui-hide" id="studentscore" lay-filter="test"  style="overflow: scroll;" ></table>
 		    </div>
-		  </div>
-		</div> 
-		
-		<!--学员状态开始-->
-		<script type="text/html" id="switchstu">
-		  <input type="checkbox" name="studentstate" value="{{d.id}}" lay-skin="switch" lay-text="在读|结课" lay-filter="sexDemo" {{ d.id==0?'':'checked'}}>
-		</script>
-		<!--学员状态结束-->
 		
 		<!--删除-->
 		<script type="text/html" id="toolbarDemo">
@@ -58,13 +37,70 @@
 		</script>
 		
 		<script type="text/html" id="barDemo">
-			<!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 	
 		<blockquote class="layui-elem-quote layui-quote-nm layui-hide" id="footer">layui {{ layui.v }} 提供强力驱动</blockquote>
 		
-		
+		<!--编辑开始-->
+		<div class="student-content" style="margin-top: 20px;display: none;" id="achievement_edit">
+			<form action="" lay-filter="formTest" class="layui-form">
+			<div class="edit-achievement"style="width: 100%;height: 40px;line-height: 40px;color: #FFF9EC;background-color: #2f4f67;text-align: center;">编辑</div>
+			<div class="" style="width: 35%;margin-top: 30px;">
+				<div class="layui-form-item">
+					<label class="layui-form-label">学员姓名</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" lay-verify='required' name="studentname" id="studentname" value="" />
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">关系</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" name="relation" id="relation" value="" />
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">联系方式</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" name="phone" id="phone" value="" />
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">成绩</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" name="score" id="score" value="" />
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">项目</label>
+					<div class="layui-input-block">
+						<select name="item">
+							<option value="0">4444</option>
+							<option value="1">eeee</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">考试</label>
+					<div class="layui-input-block">
+						<select name="examination">
+							<option value="0">999</option>
+							<option value="1">6666</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit lay-filter="*">保存</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						<button type="button" class="layui-btn layui-btn-primary" id="achievementedit_close">取消</button>
+					</div>
+				</div>
+				</div>
+			</form>
+		</div>
+		<!--编辑结束-->
 		
 		<script src="../layui.js"></script>
 		<script>
@@ -89,123 +125,8 @@
 					,
 					slider = layui.slider //滑块
 					,form = layui.form  //form表单
-					,$ = layui.$  //jquery
+					,$ = layui.$;  //jquery
 
-				//监听Tab切换
-				element.on('tab(demo)', function(data) {
-					layer.tips('切换了 ' + data.index + '：' + this.innerHTML, this, {
-						tips: 1
-					});
-				});
-
-				//执行一个 table 学员名册实例
-				table.render({
-					elem: '#demo',
-					height: 560,
-					url: '../studentroster.json', //数据接口
-					title: '用户表',
-					page: true //开启分页
-						,
-					toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-						//  ,totalRow: true //开启合计行
-						,
-					cols: [  //部门名称    //电话
-						[ //表头
-							{
-								type: 'checkbox',
-								fixed: 'left'
-							},{
-								field: 'studentname',
-								title: '学员姓名',
-								width: 140,
-							},{
-								field: 'sex',
-								title: '性别',
-								width: 80,
-							},{
-								field: 'relation',
-								title: '关系',
-								width: 133,
-							},{
-								field: 'phone',
-								title: '联系方式',
-								width: 120,
-							},{
-								field: 'tuition',
-								title: '总学费',
-								width: 100,
-							},{
-								field: 'betuition',
-								title: '实缴学费',
-								width: 100,
-							},{
-								field: 'arrears',
-								title: '欠费',
-								width: 100,
-							},{
-								field: 'studentid',
-								title: '学号',
-								width: 120,
-								unresize: true
-							},{
-								fixed: 'right',
-								title: '操作',
-								width: 140,
-								align: 'center',
-								toolbar: '#barDemo'
-							}
-						]
-					]
-				});
-				
-				//执行一个 table 学员报读列表实例
-				table.render({
-					elem: '#studentred',
-					height: 560,
-					url: '../studentroster.json', //数据接口
-					title: '用户表',
-					page: true //开启分页
-						,
-					toolbar: '#toolbarDemo' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
-						//  ,totalRow: true //开启合计行
-						,
-					cols: [  //部门名称    //电话
-						[ //表头
-							{
-									type: 'checkbox',
-									fixed: 'left'
-								},{
-									field: 'studentname',
-									title: '学员姓名',
-									width: 140
-								},{
-									field: 'lessonred',
-									title: '报读课程',
-									width: 200
-								},{
-									field: 'classname',
-									title: '班级名称',
-									width: 245
-								},{
-									field: 'teacher',
-									title: '教师',
-									width: 140
-								},{
-									field: 'studentstate',
-									title: '学员状态',
-									width: 140,
-									templet: '#switchstu'
-								},{
-									fixed: 'right',
-									title: '操作',
-									width: 170,
-									align: 'center',
-									toolbar: '#barDemo'
-								}
-						]
-					]
-				});
-				
 				//执行一个 table 学员成绩实例
 				table.render({
 					elem: '#studentscore',
@@ -225,7 +146,11 @@
 								},{
 									field: 'studentname',
 									title: '学员姓名',
-									width: 140
+									width: 136
+								},{
+									field: 'relation',
+									title: '关系',
+									width: 140,
 								},{
 									field: 'phone',
 									title: '联系方式',
@@ -236,18 +161,14 @@
 									width: 100,
 									score:true
 								},{
+									field: 'item',
+									title: '项目',
+									width: 140
+								},{
 									field: 'examination',
 									title: '考试',
 									width: 145,
 									score:true
-								},{
-									field: 'teacher',
-									title: '教师',
-									width: 140
-								},{
-									field: 'classname',
-									title: '班级',
-									width: 140,
 								},{
 									fixed: 'right',
 									title: '操作',
@@ -292,6 +213,12 @@
 //					console.log('result',result,result.username,result.phone);
 //				});
 				
+				//取消按钮
+				$("#achievementedit_close").click(function(){
+					$("#achievement_table").show();
+					$("#achievement_edit").hide();
+				});
+				
 				//监听行工具事件
 				table.on('tool(test)', function(obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 					var data = obj.data //获得当前行数据
@@ -307,7 +234,33 @@
 							//向服务端发送删除指令
 						});
 					} else if(layEvent === 'edit') {
-						alert('编辑');
+						$("#achievement_table").hide();
+						$("#achievement_edit").show();
+						var edititem='',editexamination='';
+						switch(data.item){
+							case '4444':
+							edititem = '0';
+							break;
+							case 'eeee':
+							edititem = '1';
+							break;
+						};
+						switch(data.examination){
+							case '999':
+							editexamination = '0';
+							break;
+							case '6666':
+							editexamination = '1';
+							break;
+						}
+						form.val('formTest',{
+							'studentname':data.studentname,
+							'relation':data.relation,
+							'phone':data.phone,
+							'score':data.score,
+							'item':edititem,
+							'examination':editexamination
+						});
 					}
 				});
 				

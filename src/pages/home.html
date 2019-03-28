@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 	<head>
@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-		<div class="layui-container login-form" style="width: 380px;height: 400px;">
+		<div class="layui-container login-form" style="width: 380px;height: 400px;" id="login">
 			<div class="layui-tab">
 				<header class="layui-elip" style="text-align: center;font-size: 24px;margin-bottom: 20px;">登  录</header>
 				<ul class="layui-tab-title" style="text-align: center;margin-bottom: 10px;">
@@ -32,6 +32,13 @@
 									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
+							<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<button class="layui-btn" id="register_btn">注册</button>
+				</div>
+			</div>
 						</form>
 					</div>
 					<div class="layui-tab-item">
@@ -54,25 +61,56 @@
 									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
+							<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<!--<button class="layui-btn layui-btn-primary" id="register">注册</button>-->
+				</div>
+			</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
+			<!--<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
 				<div class="layui-input-block">
 					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					<button class="layui-btn layui-btn-primary" id="register">注册</button>
 				</div>
-			</div>
+			</div>-->
 		</div>
-
+		
+		<!--注册开始-->
+		<div class="layui-container login-form" style="width: 380px;height: 400px;display: none;" id="register">
+			<form action="" class="layui-form">
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" name="" id="" value="" />
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">性别</label>
+					<div class="layui-input-block">
+						<input type="radio" name="sex" value="0" title="男">
+						<input type="radio" name="sex" value="1" title="女" checked>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--注册结束-->
 		<!--js部分-->
 		<script src="../layui.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
-			layui.use('element', function() {
-				var element = layui.element;
-
+			layui.use(['element','jquery'], function() {
+				var element = layui.element,
+				$ = layui.$;
+				$("#register_btn").click(function(){
+					$("#login").hide();
+					$("#register").show();
+				});
 				//…
 			});
 		</script>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/manage.css"/>
+	</head>
+	<style type="text/css">
+		.detail{
+			height: 30px;
+		}
+	</style>
+	<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">管理员页面</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">控制台</a></li>
+      <li class="layui-nav-item"><a href="">商品管理</a></li>
+      <li class="layui-nav-item"><a href="">用户</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          贤心
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="#" id="userdata">基本资料</a></dd>
+          <dd><a href="#">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  <!--左侧边栏-->
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      	<li class="layui-nav-item layui-nav-itemed">
+      		<a href="#" id="detail">
+      			<i class="layui-icon layui-icon-home" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+      			在职详情
+      		</a>
+      	</li>
+        <li class="layui-nav-item">
+          <a href="#" id="studentsdata">
+      			<i class="layui-icon layui-icon-home" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+      			学员名册
+      	</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+          	<i class="layui-icon layui-icon-read" style="font-size: 20px; color: #ffc639;margin-right: 10px;"></i>
+          	学员成绩</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="achievement_btn">成绩管理</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="item_btn">项目设置</a></dd>
+            <dd><a href="javascript:;" style="margin-left: 34px;" id="exam_btn">考试设置</a></dd>
+          </dl>
+        </li>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="background-color: #dee4ee;">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;width: 100%;height: 650px;">
+    	<div class="desktop" id="manage_content">
+			<div class="desktop-title">
+				<span class="desktop-title-icon"></span>
+				<span>在职详情</span>
+				<div style="margin: 40px 0 0 40px;">
+					<div class="layui-row detail">
+						<div class="layui-col-md2" style="text-align: center;">
+							机构账号：
+						</div>
+						<div class="layui-col-md10">
+							123456
+						</div>
+					</div>
+					<div class="layui-row detail ">
+						<div class="layui-col-md2" style="text-align: center;">
+							班级：
+						</div>
+						<div class="layui-col-md10">
+							22222班，333班
+						</div>
+					</div>
+					<div class="layui-row detail">
+						<div class="layui-col-md2" style="text-align: center;">
+							课程：
+						</div>
+						<div class="layui-col-md10">
+							额鹅鹅鹅，uuuuu
+						</div>
+					</div>
+					<div class="layui-row detail">
+						<div class="layui-col-md2" style="text-align: center;">
+							学员数：
+						</div>
+						<div class="layui-col-md10">
+							256
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="inform" id="school_news" style="text-align: center;display: none;">
+			<p>11111111111111111111111111111111111111111111</p>
+		</div>
+    	<iframe src="teacherinfo.html" id="manage_iframe" style="display: none;" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+<script src="../layui.js"></script>
+<script>
+//JavaScript代码区域
+layui.use(['element','carousel','jquery'], function() {
+	var element = layui.element,
+	carousel = layui.carousel,
+	form = layui.form,
+	$ = layui.$;
+	
+	//图片轮播
+	carousel.render({
+		elem:'#wheel',
+		width:'320px',
+		height:'260px',
+		interval:3000,
+		indicator:'none'
+	});
+
+	//工作台的隐藏其他显示的事件
+	function workHide(showEvent,iframeSrc){
+		$('#manage_content').hide();
+		$(showEvent).attr('src',iframeSrc).show();
+	};
+	
+	//基本资料点击事件
+	$('#userdata').click(function(){
+		$("#staff_info").show();
+		$('#manage_content').hide();
+	});
+	
+	//左侧边栏的点击事件
+	$('#detail').click(function(){  //在职信息
+		$('#manage_content').show();
+		$('#manage_iframe').hide();
+	});
+	
+	$('#userdata').click(function(){  //基本资料
+		workHide('#manage_iframe','teacherinfo.html');
+	});
+	$('#studentsdata').click(function(){  //学员名册
+		workHide('#manage_iframe','teacherstudents.html');
+	});
+	$('#achievement_btn').click(function(){  //学员成绩
+		workHide('#manage_iframe','teacherachievement.html');
+	});
+	$('#item_btn').click(function(){  //项目设置
+		workHide('#manage_iframe','teacheritem.html');
+	});
+	$('#exam_btn').click(function(){  //考试设置
+		workHide('#manage_iframe','teacherexam.html');
+	});
+});
+</script>
+</body>
+</html>
