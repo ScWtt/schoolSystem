@@ -19,53 +19,52 @@
 				</ul>
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show">
-						<form class="layui-form layui-form-pane1" action="" lay-filter="first">
+						<form class="layui-form" action="">
 							<div class="layui-form-item">
-								<label class="layui-form-label" style="text-align: center;">账号</label>
+								<label class="layui-form-label" style="text-align: center;">学号</label>
 								<div class="layui-input-block">
-									<input type="text" name="username" id="" value="" lay-verify="required" required placeholder="请输入姓名" autocomplete="off" class="layui-input" />
+									<input type="text" name="username" id="username" value="" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="text-align: center;">密码</label>
 								<div class="layui-input-block">
-									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
+									<input type="password" name="userPassword" id="userPassword" value="" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
 							<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="stusubmit">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-					<button class="layui-btn" id="register_btn">注册</button>
+					<a href="wtt.html" class="layui-btn">注册</a>
 				</div>
 			</div>
 						</form>
 					</div>
 					<div class="layui-tab-item">
-						<form action="" method="post" class="layui-form layui-form-pane1" lay-filter="first">
+						<form action="" class="layui-form layui-form-pane1" lay-filter="two">
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="text-align: center;">机构账号</label>
 								<div class="layui-input-block">
-									<input type="text" name="userCount" id="" value="" lay-verify="required" required placeholder="请输入机构账号" autocomplete="off" class="layui-input" />
+									<input type="text" name="userCount" id="userCount" value="" lay-verify="required" required placeholder="请输入机构账号" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="text-align: center;">登录名</label>
 								<div class="layui-input-block">
-									<input type="text" name="username" id="" value="" lay-verify="required" required placeholder="请输入登录名" autocomplete="off" class="layui-input" />
+									<input type="text" name="usernameOrg" id="usernameOrg" value="" lay-verify="required" required placeholder="请输入登录名" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="text-align: center;">密码</label>
 								<div class="layui-input-block">
-									<input type="password" name="userPassword" id="" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
+									<input type="password" name="userPasswordOrg" id="userPasswordOrg" value="" lay-verify="required" required placeholder="请输入密码" autocomplete="off" class="layui-input" />
 								</div>
 							</div>
 							<div class="layui-row" style="position:absolute;bottom: 60px;left: 10px;">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="orgsubmit">立即提交</button>
 					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-					<!--<button class="layui-btn layui-btn-primary" id="register">注册</button>-->
 				</div>
 			</div>
 						</form>
@@ -104,14 +103,13 @@
 		<script src="../layui.js" type="text/javascript" charset="utf-8"></script>
 		<script>
 			//注意：选项卡 依赖 element 模块，否则无法进行功能性操作
-			layui.use(['element','jquery'], function() {
+			layui.use(['element','jquery','form'], function() {
 				var element = layui.element,
-				$ = layui.$;
-				$("#register_btn").click(function(){
-					$("#login").hide();
-					$("#register").show();
-				});
-				//…
+				$ = layui.$,
+				form = layui-form;
+				 form.on('submit(stusubmit)', function(data){
+//				    layer.msg(JSON.stringify(data.field));
+				  });
 			});
 		</script>
 	</body>
